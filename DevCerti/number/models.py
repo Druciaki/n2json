@@ -82,22 +82,24 @@ class CertiNumber():
 
 
     def get_string_portuguese(self, sign):
-        osmil = None
-        oreste = None
+        thouNum = None
+        firstNum = None
         ans = ""
+        if len(self.value) > 5:
+            return {'error':'valor muito longo'}
         if len(self.value) > 3:
-            osmil = self.get_string_pt_split(self.value[:-3])
-            oreste = self.get_string_pt_split(self.value[-3:])
+            thouNum = self.get_string_pt_split(self.value[:-3])
+            firstNum = self.get_string_pt_split(self.value[-3:])
         else:
-            oreste = self.get_string_pt_split(self.value[-3:])
+            firstNum = self.get_string_pt_split(self.value[-3:])
 
         if sign<0:
             ans += "menos "
-        if osmil:
-            if osmil == 'um':
-                osmil = "mil "
+        if thouNum:
+            if thouNum == 'um':
+                thouNum = "mil "
             else:
-                osmil += " mil "
-            ans += osmil
-        ans += oreste
+                thouNum += " mil "
+            ans += thouNum
+        ans += firstNum
         return ans

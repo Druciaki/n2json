@@ -72,9 +72,11 @@ class CertiNumber():
                 ans += check_dez
             else:
                 check_dez = NUMS.get(xyz[-2:-1]+"0", False)
-                ans += check_dez
+                if check_dez:
+                    ans += check_dez
                 if xyz[-1] != "0":
-                    ans += " e "
+                    if check_dez:
+                        ans += " e "
                     ans += NUMS.get(xyz[-1])
         else: # Z
             ans += NUMS.get(xyz[-1])
@@ -85,8 +87,6 @@ class CertiNumber():
         thouNum = None
         firstNum = None
         ans = ""
-        if len(self.value) > 5:
-            return {'error':'valor muito longo'}
         if len(self.value) > 3:
             thouNum = self.get_string_pt_split(self.value[:-3])
             firstNum = self.get_string_pt_split(self.value[-3:])
